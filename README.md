@@ -1,2 +1,28 @@
-# adguard-credentials
-Script PowerShell autonome pour changer l'identifiant/mot de passe AdGuardHome sous Windows. Gère le hash BCrypt, l'élévation UAC et le redémarrage du service.
+# change_credentials.ps1
+
+Script autonome pour modifier l'identifiant et/ou le mot de passe d'AdGuardHome sous Windows.
+
+## Utilisation
+
+```powershell
+# Avec prompt interactif
+.\change_credentials.ps1
+
+# Ou directement avec le chemin du YAML
+.\change_credentials.ps1 -ConfigPath "C:\AdGuardHome\AdGuardHome.yaml"
+```
+
+Laissez un champ vide pour ne pas le modifier.
+
+## Fonctionnement
+
+1. S'élève automatiquement en administrateur (UAC) — nécessaire pour écrire le YAML et redémarrer le service
+2. Génère le hash BCrypt via le package NuGet `BCrypt.Net-Next 4.2.0` (chargé en mémoire, aucune installation)
+3. Remplace la section `users:` dans le fichier YAML
+4. Redémarre AdGuardHome (`AdGuardHome.exe -s restart`)
+
+## Dépendances
+
+- PowerShell 5.1+
+- .NET Framework 4.7.2+ (présent par défaut sur Windows 10/11)
+- Connexion Internet (pour télécharger BCrypt.Net-Next via NuGet)
