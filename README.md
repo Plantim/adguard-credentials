@@ -34,11 +34,6 @@ Directement l'option 1 avec le chemin du YAML
 .\change_credentials.ps1 -ConfigPath "C:\AdGuardHome\AdGuardHome.yaml"
 ```
 
-Ou avec technique irm : Ouvrez une console **PowerShell** et exécutez la commande suivante :
-```powershell
-irm https://raw.githubusercontent.com/Plantim/adguard-credentials/refs/heads/main/change_credentials.ps1 | iex
-```
-
 ## Fonctionnement
 
 1. S'élève automatiquement en administrateur (UAC) — nécessaire pour écrire le YAML et redémarrer le service
