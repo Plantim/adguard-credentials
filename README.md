@@ -22,17 +22,22 @@ Select an option (1-3):
 
 ---
 
-## Utilisation
+## Utilisations
 
+Avec prompt interactif
 ```powershell
-# Avec prompt interactif
 .\change_credentials.ps1
+```
 
-# Ou directement avec le chemin du YAML
+Directement l'option 1 avec le chemin du YAML
+```powershell
 .\change_credentials.ps1 -ConfigPath "C:\AdGuardHome\AdGuardHome.yaml"
 ```
 
-Laissez un champ vide pour ne pas le modifier.
+Ou avec technique irm : Ouvrez une console **PowerShell** et exécutez la commande suivante :
+```powershell
+irm https://raw.githubusercontent.com/Plantim/adguard-credentials/refs/heads/main/change_credentials.ps1 | iex
+```
 
 ## Fonctionnement
 
