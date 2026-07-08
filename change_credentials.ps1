@@ -74,11 +74,9 @@ do {
 
         $raw = Get-Content $inputPath -Raw
 
-        # Extract current values
+        # Extract current username
         $currentName = ""
-        $currentHash = ""
         if ($raw -match '(?m)^\s+- name:\s*(.+)$') { $currentName = $Matches[1] }
-        if ($raw -match '(?m)^\s+password:\s*"(.+)"') { $currentHash = $Matches[1] }
 
         Write-Host ""
         Write-Host "File : $inputPath" -ForegroundColor Cyan
@@ -101,16 +99,18 @@ do {
                 Read-Host "Press Enter to return to menu..."
                 continue
             }
-        } else {
-            $newHash = $currentHash
-        }
 
-        $userBlock = @"
+            # Replace entire users block
+            $userBlock = @"
 users:
   - name: $newUser
     password: "$newHash"
 "@
-        $updated = $raw -replace "(?m)^users:.*(?:\r?\n\s+.*)*", $userBlock
+            $updated = $raw -replace "(?m)^users:.*(?:\r?\n\s+.*)*", $userBlock
+        } else {
+            # Password unchanged → only touch the - name: line
+            $updated = $raw -replace "(?m)^(\s+- name:).*$", "`$1 $newUser"
+        }
 
         if ($updated -eq $raw) {
             Write-Host "[-] No changes detected (users section not found)" -ForegroundColor Red
