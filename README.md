@@ -2,6 +2,26 @@
 
 Script autonome pour modifier l'identifiant et/ou le mot de passe d'AdGuardHome sous Windows.
 
+
+### 🖥️ Menu du script (Interface Console)
+
+Lorsque vous exécutez le script, une interface textuelle interactive s'affiche directement dans votre console PowerShell :
+
+```text
+==========================================
+    AdGuardHome Credentials Tool
+==========================================
+
+  [1] Change Username/Password in YAML
+  [2] Generate BCrypt hash from password
+  [3] Exit
+
+==========================================
+Select an option (1-3):
+```
+
+---
+
 ## Utilisation
 
 ```powershell
