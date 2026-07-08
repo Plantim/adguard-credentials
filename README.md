@@ -26,12 +26,12 @@ Select an option (1-3):
 
 Avec prompt interactif
 ```powershell
-.\change_credentials.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File "change_credentials.ps1"
 ```
 
 Directement l'option 1 avec le chemin du YAML
 ```powershell
-.\change_credentials.ps1 -ConfigPath "C:\AdGuardHome\AdGuardHome.yaml"
+powershell -NoProfile -ExecutionPolicy Bypass -File "change_credentials.ps1" -ConfigPath "C:\AdGuardHome\AdGuardHome.yaml"
 ```
 
 ## Fonctionnement
